@@ -13,6 +13,7 @@ pipeline {
           }
           stage("Gradle run") {
                steps {
+                    sh "ps -aef | grep tomcat"
                     sh "./gradlew bootRun"
                }
           }
