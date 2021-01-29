@@ -16,6 +16,11 @@ pipeline {
                     sh "./gradlew build"
                }
           }
+          stage("Gradle run") {
+               steps {
+                    sh "./gradlew bootRun"
+               }
+          }
           stage("Acceptance test") {
                steps {
                     sleep 60
