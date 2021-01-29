@@ -11,15 +11,15 @@ pipeline {
                     sh "./gradlew test"
                }
           }
-          stage("Gradle run") {
+          stage("Package") {
                steps {
-                    sh "./gradlew bootRun"
+                    sh "./gradlew build"
                }
           }
-          stage("Acceptance test") {
+          stage("Docker build") {
                steps {
-                    sleep 60
-                    sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
-               } 
+                    sh "docker build -t localhost:5000/calculator ."
+               }
+          } 
      }
 }
