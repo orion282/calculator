@@ -13,7 +13,7 @@ pipeline {
           }
           stage("Gradle run") {
                steps {
-                    sh "pkill -9 -f tomcat"
+                    sh "ps -aef | grep tomcat | awk '{print$2}' | xargs kill -9"
                     sh "./gradlew bootRun"
                }
           }
