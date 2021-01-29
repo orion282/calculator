@@ -16,9 +16,10 @@ pipeline {
                     sh "./gradlew build"
                }
           }
-          stage("Acceptance test") {
+          stage("Docker build") {
                steps {
                     sleep 60
-               } 
+               }
+          } 
      }
 }
