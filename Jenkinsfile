@@ -16,9 +16,10 @@ pipeline {
                     sh "./gradlew build"
                }
           }
-          stage("Gradle run") {
+          stage("Docker build") {
                steps {
-                    sh "./gradlew bootRun"
-               } 
+                    sh "docker build -t localhost:5000/calculator ."
+               }
+          } 
      }
 }
