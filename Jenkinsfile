@@ -16,9 +16,10 @@ pipeline {
                     sh "./gradlew build"
                }
           }
-          stage("Docker build") {
+          stage("Acceptance test") {
                steps {
                     sleep 60
+                    sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
                }
           } 
      }
