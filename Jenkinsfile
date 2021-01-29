@@ -11,11 +11,6 @@ pipeline {
                     sh "./gradlew test"
                }
           }
-          stage("Package") {
-               steps {
-                    sh "./gradlew build"
-               }
-          }
           stage("Gradle run") {
                steps {
                     sh "./gradlew bootRun"
