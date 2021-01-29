@@ -11,17 +11,20 @@ pipeline {
                     sh "./gradlew test"
                }
           }
-          stage("Gradle run") {
+          stage("Package") {
                steps {
-                    sh "ps -aef | grep tomcat | awk '{print$2}' | xargs kill -9"
-                    sh "./gradlew bootRun"
+                    sh "./gradlew build"
+               }
+          }
+          stage("Docker build") {
+               steps {
+                    sh "docker build -t localhost:5000/calculator ."
                }
           }
           stage("Acceptance test") {
                steps {
                     sleep 60
                     sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
-               }
-          } 
+               } 
      }
 }
