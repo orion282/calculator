@@ -33,16 +33,5 @@ pipeline {
                     sh "docker ps -a"
                }
           }
-          stage("Acceptance test") {
-               steps {
-                    sleep 30
-                    sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
-               }
-          }
-     }
-     post {
-          always {
-               sh "docker stop calculator"
-          }
      }
 }
