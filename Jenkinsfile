@@ -30,11 +30,13 @@ pipeline {
                steps {
                     sh "docker ps -a"
                     sh "docker run -d --rm -p 8765:8080 --name calculator localhost:5000/calculator"
+                    sh "docker ps -a"
                }
           }
           stage("Acceptance test") {
                steps {
-                    sleep 60
+                    sleep 30
+                    sh "curl localhost:8765/sum?a=5\&b=6"
                     sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
                }
           }
