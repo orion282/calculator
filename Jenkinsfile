@@ -11,10 +11,26 @@ pipeline {
                     sh "./gradlew test"
                }
           }
-          stage("Acceptance test") {
+          stage("Package") {
                steps {
-                    sleep 30
-                    sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
+                    sh "./gradlew build"
+               }
+          }
+          stage("Docker build") {
+               steps {
+                    sh "docker build -t localhost:5000/calculator ."
+               }
+          }
+          stage("Docker push") {
+               steps {
+                    sh "docker push localhost:5000/calculator"
+               }
+          }
+          stage("Deploy to staging") {
+               steps {
+                    sh "docker ps -a"
+                    sh "docker run -d --rm -p 8765:8080 --name calculator localhost:5000/calculator"
+                    sh "docker ps -a"
                }
           }
      }
