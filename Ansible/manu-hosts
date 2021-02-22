@@ -1,0 +1,8 @@
+[webservers]
+#web1 ansible_host=192.168.0.241 ansible_user=admin
+#web2 ansible_host=192.168.0.242 ansible_user=admin
+web3 ansible_host=192.168.1.56
+good_server ansible_host=172.17.0.3 ansible_user=manusamp
+good_server2 ansible_host=172.17.0.4 ansible_user=manusamp
+good_server3 ansible_host=172.17.0.5 ansible_user=manusamp
+good_server4 ansible_host=172.17.0.6 ansible_user=manusamp
